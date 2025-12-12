@@ -1,6 +1,4 @@
-# holbertonschool-unity
-
-***Réponses aux 31 tasks du projet Unity-User_Interface***
+***unity-user_interface***
 
 0. Project Window: Adding Assets
 
