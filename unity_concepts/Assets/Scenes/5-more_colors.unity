@@ -240,7 +240,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5505576975612168305, guid: ec16e913cf4a63c45ab84f491ca74fc4, type: 3}
       propertyPath: m_Name
-      value: While Ball
+      value: White Ball
       objectReference: {fileID: 0}
     - target: {fileID: 8946611779411789404, guid: ec16e913cf4a63c45ab84f491ca74fc4, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
