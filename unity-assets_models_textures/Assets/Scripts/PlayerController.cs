@@ -27,8 +27,8 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(moveX, 0f, moveZ);
         Vector3 velocity = movement * moveSpeed;
 
-        Vector3 currentVelocity = rb.velocity;
-        rb.velocity = new Vector3(velocity.x, currentVelocity.y, velocity.z);
+        Vector3 currentVelocity = rb.linearVelocity;
+        rb.linearVelocity = new Vector3(velocity.x, currentVelocity.y, velocity.z);
     }
 
     void Jump()
