@@ -683,6 +683,7 @@ GameObject:
   - component: {fileID: 1101813647}
   - component: {fileID: 1101813646}
   - component: {fileID: 1101813645}
+  - component: {fileID: 1101813649}
   m_Layer: 0
   m_Name: WinFlag
   m_TagString: Untagged
@@ -784,6 +785,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1101813649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101813644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cefdd900dd50f9489e6c38f00f4157f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WinTrigger
+  TimerText: {fileID: 0}
+  script: {fileID: 0}
 --- !u!1 &1466195850
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,6 +1001,7 @@ GameObject:
   - component: {fileID: 1638627756}
   - component: {fileID: 1638627755}
   - component: {fileID: 1638627754}
+  - component: {fileID: 1638627758}
   m_Layer: 0
   m_Name: TimerTrigger
   m_TagString: Untagged
@@ -1008,7 +1024,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1021,7 +1037,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1638627753}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1085,6 +1101,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1638627758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638627753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45fb925fb02135d48a9cf596884aa38e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TimerTrigger
+  script: {fileID: 0}
 --- !u!1 &1700284958
 GameObject:
   m_ObjectHideFlags: 0
