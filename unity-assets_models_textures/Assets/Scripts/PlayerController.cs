@@ -1,50 +1,65 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 6f;
-    public float jumpForce = 7f;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float jumpForce = 8f;
+    [SerializeField] private float jumphigh = 3f;
 
     private Rigidbody rb;
-    private bool isGrounded;
+    public bool isGrounded;
 
+    void OnCollisionEnter(Collision collision)
+    {
+        isGrounded = true;
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        isGrounded = false;
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 
     void Update()
     {
-        Move();
-        Jump();
-    }
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
 
-    void Move()
-    {
-        float moveX = Input.GetAxis("Horizontal"); // A / D
-        float moveZ = Input.GetAxis("Vertical");   // W / S
+        Vector3 camForward = Camera.main.transform.forward;
+        Vector3 camRight = Camera.main.transform.right;
 
-        Vector3 movement = new Vector3(moveX, 0f, moveZ);
-        Vector3 velocity = movement * moveSpeed;
+        camForward.y = 0f;
+        camRight.y = 0f;
 
-        Vector3 currentVelocity = rb.linearVelocity;
-        rb.linearVelocity = new Vector3(velocity.x, currentVelocity.y, velocity.z);
-    }
+        camForward.Normalize();
+        camRight.Normalize();
 
-    void Jump()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        Vector3 move = (camForward * v + camRight * h) * speed * Time.deltaTime;
+
+        transform.Translate(move, Space.World);
+
+        if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
+            rb.AddForce(new Vector3(0.0f, jumphigh, 0.0f) * jumpForce, ForceMode.Impulse);
             isGrounded = false;
         }
+
+        if (FallingLimit())
+        {
+            transform.position = new Vector3(0, 40f, 0);
+        }
     }
 
-    void OnCollisionEnter(Collision collision)
+    public bool FallingLimit()
     {
-        if (collision.gameObject.CompareTag("Platform"))
+        if (rb.position.y < -25)
         {
-            isGrounded = true;
+            return true;
         }
+        return false;
     }
 }

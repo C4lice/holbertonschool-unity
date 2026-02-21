@@ -1,54 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+
 
 public class CameraController : MonoBehaviour
 {
-    public Transform player;
 
-    public float mouseSensitivity = 100f;
-    public float distance = 6.25f;
-    public float height = 2.5f;
+    private const float YMin = -50.0f;
+    private const float YMax = 50.0f;
 
-    public bool requireRightClick = false;
+    public Transform lookAt;
 
-    private float xRotation = 9f;
-    private float yRotation = 0f;
+    public Transform Player;
+
+    public float distance = 10.0f;
+    private float currentX = 0.0f;
+    private float currentY = 0.0f;
+    public float sensivity = 4.0f;
+
 
     void Start()
     {
-        if (player == null)
+      
+
+    }
+    void LateUpdate()
+    {
+        if (Input.GetMouseButton(1))
         {
-            player = GameObject.Find("Player").transform;
+            currentX += Input.GetAxis("Mouse X") * sensivity;
+            currentY -= Input.GetAxis("Mouse Y") * sensivity;
         }
 
-        Cursor.lockState = CursorLockMode.Locked;
-    }
+        currentY = Mathf.Clamp(currentY, YMin, YMax);
 
-    void Update()
-    {
-        HandleMouseInput();
-        FollowPlayer();
-    }
+        Vector3 direction = new Vector3(0, 0, -distance);
+        Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
 
-    void HandleMouseInput()
-    {
-        if (requireRightClick && !Input.GetMouseButton(1))
-            return;
-
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-
-        yRotation += mouseX;
-        xRotation -= mouseY;
-
-        xRotation = Mathf.Clamp(xRotation, -30f, 60f);
-    }
-
-    void FollowPlayer()
-    {
-        Vector3 offset = new Vector3(0, height, -distance);
-        Quaternion rotation = Quaternion.Euler(xRotation, yRotation, 0);
-
-        transform.position = player.position + rotation * offset;
-        transform.LookAt(player.position + Vector3.up * 1.5f);
+        transform.position = lookAt.position + rotation * direction;
+        transform.LookAt(lookAt.position);
     }
 }
