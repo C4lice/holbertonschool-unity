@@ -31,3 +31,8 @@ Unity - Assets: Models, Textures
 14. (Sea)horse race
 
 15. Under development
+
+**:credits:**
+## Assets
+
+Skyboxes: [Farland Skies - Cloudy Crown](https://assetstore.unity.com/packages/2d/textures-materials/sky/farland-skies-cloudy-crown-118489)
