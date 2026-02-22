@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// This script is responsible for controlling the camera's position and rotation based on mouse input.
 public class CameraController : MonoBehaviour
 {
 
@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour
     private float currentY = 0.0f;
     public float sensivity = 4.0f;
 
-
+/// Initializes the camera controller. Currently, it does not perform any specific actions on start.
     void Start()
     {
       
